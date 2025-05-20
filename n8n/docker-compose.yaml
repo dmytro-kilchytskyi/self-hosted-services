@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - 5678:5678
+    environment:
+      - WEBHOOK_URL=https://n8n.cloudstats.org
+
+      # Optional: Encryption Key for sensitive credential data.
+      # If not set, n8n generates one. For persistence across restarts/recreations,
+      # set a strong, random string (at least 32 characters). Store this securely.
+      # - N8N_ENCRYPTION_KEY=your_strong_random_encryption_key
+
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:
+    driver: local
