@@ -20,7 +20,7 @@ services:
     depends_on:
       - n8n
     volumes:
-      - n8n_data:/n8n_backup_data:ro
+      - n8n_data:/backup_data:ro
 
 volumes:
   n8n_data:
