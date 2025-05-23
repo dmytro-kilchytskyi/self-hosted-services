@@ -17,4 +17,4 @@ RUN mkdir "${BACKUP_DIR}" && touch "${LOG_FILE}" && chmod 644 "${LOG_FILE}"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
-CMD ["crond", "-f", "-d", "8", "-L", "/backups/cron_daemon.log"]
+CMD ["crond", "-f"]
