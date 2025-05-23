@@ -3,7 +3,7 @@ FROM alpine:latest
 # VOLUME_PATH: Path inside this container where volume will be mounted
 ENV VOLUME_PATH="/backup_data"
 
-ENV CRON_SCHEDULE="0 2 * * *"
+ENV CRON_SCHEDULE="@weekly"
 ENV BACKUP_DIR="/backups"
 ENV LOG_FILE="${BACKUP_DIR}/backup.log"
 
