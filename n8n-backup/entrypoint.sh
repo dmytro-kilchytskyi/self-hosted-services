@@ -1,3 +1,16 @@
 #!/bin/sh
 
-echo "Loading entrypoint.sh file..."
+# Check if CRON_SCHEDULE is set
+if [ -z "${CRON_SCHEDULE}" ]; then
+  echo "Error: CRON_SCHEDULE environment variable is not set."
+  exit 1
+fi
+
+echo "Setting up cron job with schedule: ${CRON_SCHEDULE}"
+echo "${CRON_SCHEDULE} /usr/local/bin/backup.sh >> ${LOG_FILE} 2>&1" > /etc/crontabs/root
+echo "Cron job configured. Starting cron daemon..."
+echo "----------------------------------------------------"
+
+tail -f "${LOG_FILE}" &
+
+exec "$@"
